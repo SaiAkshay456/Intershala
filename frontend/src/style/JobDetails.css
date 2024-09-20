@@ -1,0 +1,77 @@
+/* JobDetailsLetterResponsive.css */
+.jobdetails-letter-responsive {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.letter-content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+}
+
+.letter-header p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.job-details p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.letter-header,
+.job-details {
+    border-left: 3px solid #007bff;
+    padding-left: 15px;
+}
+
+.letter-content p {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .letter-content {
+        padding: 15px;
+    }
+
+    .letter-header,
+    .job-details {
+        padding-left: 10px;
+    }
+
+    .letter-content p {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .letter-content {
+        padding: 10px;
+    }
+
+    .letter-content p {
+        font-size: 0.95rem;
+    }
+
+    .btn-primary {
+        padding: 7px 12px;
+        font-size: 0.85rem;
+    }
+}

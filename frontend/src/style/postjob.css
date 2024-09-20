@@ -1,0 +1,47 @@
+.postjob .wrapper-p {
+    max-width: 600px;
+    /* Adjust this value to your desired width */
+    margin: 0 auto;
+    padding: 20px;
+    /* Padding inside the form */
+    background-color: #f9f9f9;
+    /* Optional: Add a background to the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: Add shadow for form pop-out effect */
+    border-radius: 8px;
+    /* Optional: Rounded corners */
+}
+
+.postjob input,
+.postjob select,
+.postjob textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    /* Adjust padding for height control */
+}
+
+.postjob .form-control,
+.postjob .form-select {
+    min-height: 40px;
+    /* Control minimum height */
+}
+
+.postjob button {
+    padding: 10px 15px;
+}
+
+/* Adjust padding/margins for smaller screens */
+@media (max-width: 576px) {
+    .postjob .wrapper-p {
+        max-width: 100%;
+        /* Full-width for small screens */
+        padding: 10px;
+    }
+
+    .postjob input,
+    .postjob select,
+    .postjob textarea {
+        padding: 8px;
+        /* Decrease padding on small screens */
+    }
+}

@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+body {
+  background-color: #fff;
+}
+
+.wrapper {
+  width: 330px;
+  padding: 2rem 1rem;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.must {
+  font-size: 2rem;
+  color: #07001f;
+  margin-bottom: 1.2rem;
+}
+
+form input,
+select {
+  width: 95%;
+  outline: none;
+  border: 1px solid #fff;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background: #e4e4e4;
+}
+
+.btx {
+  font-size: 1rem;
+  margin-top: 1.8rem;
+  padding: 10px 0;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  width: 90%;
+  color: #fff;
+  cursor: pointer;
+  background: #009688;
+}
+
+.btx:hover {
+  background: rgba(17, 107, 143, 0.877);
+}
+
+input:focus {
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.member {
+  font-size: 0.8rem;
+  margin-top: 1.4rem;
+  color: #636363
+}
+
+.member a {
+  text-decoration: none;
+  color: rgb(17, 107, 143);
+}
+
+/* HeroSection.css */
+/* HeroSection.css */
+.heroSection {
+  padding: 60px 0;
+}
+
+.title h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #2f4f4f;
+}
+
+.title p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.image-h img {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: block;
+}
+
+.details .card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: #009688;
+}
+
+.stat-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-subTitle {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 576px) {
+  .title h1 {
+    font-size: 2rem;
+  }
+
+  .title p {
+    font-size: 0.9rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .stat-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* HowItWorks.css */
+.howItWorks {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.howItWorks h3 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.banner .card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.banner .card:hover {
+  transform: translateY(-10px);
+}
+
+.details .card:hover {
+  transform: translateY(-10px);
+
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: #009688;
+  /* Customize icon color */
+}
+
+.card h4 {
+  font-size: 1.25rem;
+  margin: 15px 0;
+}
+
+.card p {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .howItWorks h3 {
+    font-size: 1.5rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .card h4 {
+    font-size: 1.125rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+}
+
+/* PopularCategories.css */
+.categories {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.categories h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.banner-p .card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.banner-p .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.banner-p .card .icon {
+  font-size: 3rem;
+  color: #009688;
+  /* Customize icon color */
+}
+
+.banner-p .card h4 {
+  font-size: 1.25rem;
+  margin: 15px 0;
+}
+
+.banner-p .card p {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .categories h3 {
+    font-size: 1.5rem;
+  }
+
+  .banner-p .card .icon {
+    font-size: 2.5rem;
+  }
+
+  .banner-p .card h4 {
+    font-size: 1.125rem;
+  }
+
+  .banner-p .card p {
+    font-size: 0.8rem;
+  }
+}
