@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import "../../style/myjobs.css"; // Custom CSS for animations
+import toast from "react-hot-toast";
 
 const Myjobs = () => {
   const [myJobs, setMyJobs] = useState([]);
@@ -43,9 +44,11 @@ const Myjobs = () => {
       })
       .then((res) => {
         console.log(res.data.message);
+        toast.success(res.data.message)
         setEditMode(null);
       })
       .catch((err) => {
+        toast.error(err.response.data.message)
         console.error(err.response.data.message);
       });
   };
@@ -56,9 +59,13 @@ const Myjobs = () => {
         withCredentials: true,
       })
       .then((res) => {
+        toast.success(res.data.message)
         setMyJobs((prev) => prev.filter((job) => job._id !== jobId));
       })
-      .catch((err) => console.error(err.response.data.message));
+      .catch((err) => {
+        toast.success(res.data.response.message)
+        console.error(err.response.data.message)
+      });
   };
 
   const handleInputChange = (jobId, field, value) => {
@@ -80,6 +87,18 @@ const Myjobs = () => {
             >
               <div className="card p-3 h-100 card-hover" key={job._id}>
                 <div className="card-body">
+                  <div className="mb-3">
+                    <label className="form-label">Title:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      disabled={editMode !== job._id}
+                      value={job.companyName}
+                      onChange={(e) =>
+                        handleInputChange(job._id, "companyName", e.target.value)
+                      }
+                    />
+                  </div>
                   <div className="mb-3">
                     <label className="form-label">Title:</label>
                     <input

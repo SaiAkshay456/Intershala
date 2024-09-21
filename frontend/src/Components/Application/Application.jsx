@@ -114,6 +114,7 @@ const Application = () => {
                                     type="file"
                                     className="form-control"
                                     onChange={handleResume}
+                                    placeholder='Resume'
                                     accept=".jpg, .webp, .png"
                                     style={{ width: "100%" }}
                                     required

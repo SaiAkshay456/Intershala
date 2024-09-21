@@ -43,6 +43,7 @@ const JobDetails = () => {
                             {/* Letter Header */}
                             <div className="letter-header mb-4">
                                 <p><strong>{currentDate}</strong></p>
+                                <p><strong>{job.companyName}</strong></p>
                                 <p><strong>Company Address:</strong> {job.location},{job.city},{job.country}</p>
                             </div>
 

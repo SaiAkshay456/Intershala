@@ -38,8 +38,9 @@ const Jobs = () => {
                     {jobs?.length > 0 ? (
                         jobs?.map((job) => (
                             <div className="col-12 col-md-6 col-lg-4 mb-4" >
-                                <div className="card p-4 h-100 key={job._id}">
+                                <div className="card p-4 h-100" key={job._id}>
                                     <h4>{job.title}</h4>
+                                    <p>Company :{job.companyName}</p>
                                     <p>Category: {job.category}</p>
                                     <p>Country: {job.country}</p>
                                     <Link to={`/job/${job._id}`} className="btn btn-primary">

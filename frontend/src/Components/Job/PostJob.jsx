@@ -7,6 +7,7 @@ import "../../style/postjob.css";
 
 const PostJob = () => {
     const [title, setTitle] = useState("");
+    const [companyName, setCompanyName] = useState("");
     const [category, setCategory] = useState("");
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
@@ -33,14 +34,15 @@ const PostJob = () => {
         }
 
         await axios.post("http://localhost:3030/api/v1/job/postjob", fixedSalary.length >= 4 ?
-            { title, category, city, country, location, description, fixedSalary } :
-            { title, category, city, country, location, description, salaryFrom, salaryTo }, {
+            { companyName, title, category, city, country, location, description, fixedSalary } :
+            { companyName, title, category, city, country, location, description, salaryFrom, salaryTo }, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json"
             }
         }).then((res) => {
             setTitle("");
+            setCompanyName("");
             setCategory("");
             setCity("");
             setCountry("");
@@ -64,6 +66,15 @@ const PostJob = () => {
                 <div className="wrapper-p">
                     <form onSubmit={handlePostJob}>
                         <div className="row mb-3">
+                            <div className="col-md-6 mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Company Name"
+                                    value={companyName}
+                                    onChange={(e) => setCompanyName(e.target.value)}
+                                />
+                            </div>
                             <div className="col-md-6 mb-3">
                                 <input
                                     type="text"

@@ -58,7 +58,8 @@ function App() {
             <Route path="/application/me" element={<MyApplications />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
+          {isAuthorized ? <Footer /> : <></>
+          }
         </Router>
       </div>
       <Toaster />

@@ -18,8 +18,8 @@ export const postJob = catchAsyncError(async (req, res, next) => {
     if (role === "JobSeeker") {
         return next(new Errorhandler(`user with this ${role} cannot post job`, 301))
     }
-    const { title, city, category, country, location, fixedSalary, salaryFrom, salaryTo, description } = req.body;
-    if (!title || !city || !category || !country || !location || !description) {
+    const { companyName, title, city, category, country, location, fixedSalary, salaryFrom, salaryTo, description } = req.body;
+    if (!title || !city || !category || !country || !location || !description || !companyName) {
         return next(new Errorhandler(`Fill the details properly`, 301))
     }
     if (!salaryFrom && !salaryTo && !fixedSalary) {
@@ -35,7 +35,7 @@ export const postJob = catchAsyncError(async (req, res, next) => {
     const postedName = req.user.firstName
     const jobs = await jobModel.create({
         title, city, category, country, location, fixedSalary, salaryFrom,
-        salaryTo, description, postedBy
+        salaryTo, description, postedBy, companyName
     })
     res.status(200).json({
         success: true,

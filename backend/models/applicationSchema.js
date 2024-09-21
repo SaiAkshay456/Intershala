@@ -17,7 +17,8 @@ const applicationSchema = new mongoose.Schema({
     },
     phone: {
         type: "Number",
-        required: [true, "Please provide phone number"]
+        required: [true, "Please provide phone number"],
+        minLength: [5, "must exceed 5"]
     },
     coverLetter: {
         type: String,
