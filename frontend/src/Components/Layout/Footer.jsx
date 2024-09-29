@@ -1,4 +1,6 @@
 import React from 'react'
+import { GrInstagram } from "react-icons/gr";
+import { FaTwitter, FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
     return (
@@ -30,10 +32,9 @@ const Footer = () => {
 
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
                             <h5 class="text-uppercase mb-4 font-weight-bold">Follow Us</h5>
-                            <a href="#" class="text-light me-4"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-light me-4"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-light me-4"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-light me-4"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/imakshay50/" target="_blank" class="text-light me-4"><GrInstagram /></a>
+                            <a href="#" class="text-light me-4" target="_blank" ><FaTwitter /></a>
+                            <a href="#" class="text-light me-4" target="_blank" ><FaFacebook /></a>
                         </div>
                     </div>
 
@@ -46,10 +47,9 @@ const Footer = () => {
 
                         <div class="col-md-5 col-lg-4">
                             <div class="text-center text-md-right">
-                                <a href="#" class="text-light me-4"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-light me-4"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-light me-4"><i class="fab fa-google"></i></a>
-                                <a href="#" class="text-light me-4"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-light me-4" target="_blank"><GrInstagram /></a>
+                                <a href="#" class="text-light me-4" target="_blank"><FaTwitter /></a>
+                                <a href="#" class="text-light me-4" target="_blank"><FaFacebook /></a>
                             </div>
                         </div>
                     </div>

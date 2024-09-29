@@ -22,6 +22,7 @@ import axios from 'axios';
 import NotFound from './Components/NotFound/NotFound';
 import NavBar from './Components/Layout/Navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
+import Contact from './Components/Layout/Contact';
 
 function App() {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -56,6 +57,7 @@ function App() {
             <Route path="/job/getmyjobs" element={<Myjobs />} />
             <Route path="/application/:id" element={<Application />} />
             <Route path="/application/me" element={<MyApplications />} />
+            <Route path="/about" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           {isAuthorized ? <Footer /> : <></>

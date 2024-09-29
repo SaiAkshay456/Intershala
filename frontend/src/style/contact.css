@@ -1,0 +1,126 @@
+.contact-us-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.form-section,
+.newsletter-section {
+    width: 45%;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.highlight {
+    text-decoration: underline;
+    color: #ef5857;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+.submit-button,
+.signup-button {
+    background-color: #ef5857;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-button:hover,
+.signup-button:hover {
+    background-color: #d94442;
+}
+
+.contact-info h4 {
+    margin-top: 20px;
+}
+
+.contact-info a {
+    color: #ef5857;
+    text-decoration: underline;
+    margin-right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-us-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .form-section,
+    .newsletter-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .highlight {
+        display: inline-block;
+    }
+
+    .submit-button,
+    .signup-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .input-group label {
+        font-size: 1rem;
+    }
+
+    input,
+    textarea {
+        font-size: 0.9rem;
+    }
+
+    .submit-button,
+    .signup-button {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .contact-info h4 {
+        font-size: 1rem;
+    }
+}

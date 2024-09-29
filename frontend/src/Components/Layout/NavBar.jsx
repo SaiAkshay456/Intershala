@@ -54,7 +54,7 @@ const NavBar = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mx-auto">
                             <Nav.Link as={Link} to="/" className="text-white">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/about" className="text-white">About</Nav.Link>
+                            <Nav.Link as={Link} to="/about" className="text-white">Contact Us</Nav.Link>
                             {renderUserFields()}
 
                         </Nav>
