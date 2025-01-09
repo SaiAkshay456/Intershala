@@ -11,7 +11,7 @@ const NavBar = () => {
     const navigateTo = useNavigate();
     const handleLogout = async () => {
         try {
-            const response = await axios.get("http://localhost:3030/api/v1/user/logout", { withCredentials: true })
+            const response = await axios.get(`${BACKEND_URL}/user/logout`, { withCredentials: true })
             toast.success(response.data.message)
             console.log("logged out");
             setIsAuthorized(false);

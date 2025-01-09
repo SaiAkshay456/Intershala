@@ -33,7 +33,7 @@ const PostJob = () => {
             setFixedSalary("");
         }
 
-        await axios.post("http://localhost:3030/api/v1/job/postjob", fixedSalary.length >= 4 ?
+        await axios.post(`${BACKEND_URL}/job/postjob`, fixedSalary.length >= 4 ?
             { companyName, title, category, city, country, location, description, fixedSalary } :
             { companyName, title, category, city, country, location, description, salaryFrom, salaryTo }, {
             withCredentials: true,

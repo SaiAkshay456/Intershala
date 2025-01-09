@@ -21,8 +21,8 @@ const MyApplications = () => {
         const fetchApplications = async () => {
             try {
                 const endpoint = user.role === "Employer" ?
-                    "http://localhost:3030/api/v1/application/empApplications" :
-                    "http://localhost:3030/api/v1/application/jobseekerApplications";
+                    `${BACKEND_URL}/application/empApplications` :
+                    `${BACKEND_URL}/application/jobseekerApplications`;
                 const { data } = await axios.get(endpoint, { withCredentials: true });
                 setApplications(data.applications);
             } catch (err) {
@@ -35,7 +35,7 @@ const MyApplications = () => {
     // Delete application (for Jobseekers only)
     const deleteApplication = async (id) => {
         try {
-            const { data } = await axios.delete(`http://localhost:3030/api/v1/application/deleteApplication/${id}`, { withCredentials: true });
+            const { data } = await axios.delete(`${BACKEND_URL}/application/deleteApplication/${id}`, { withCredentials: true });
             toast.success(data.message);
             setApplications((prevApp) => prevApp.filter((app) => app._id !== id));
         } catch (err) {

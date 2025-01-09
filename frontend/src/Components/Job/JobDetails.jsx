@@ -13,7 +13,7 @@ const JobDetails = () => {
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:3030/api/v1/job/${id}`, { withCredentials: true });
+                const { data } = await axios.get(`${BACKEND_URL}/job/${id}`, { withCredentials: true });
                 setJob(data.job);
             } catch (error) {
                 console.error('Error fetching job details:', error);
