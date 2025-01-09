@@ -17,7 +17,7 @@ const Jobs = () => {
 
         const fetchJobs = async () => {
             try {
-                const { data } = await axios.get(`${BACKEND_URL}/job/getalljobs`, {
+                const { data } = await axios.get(`${import.meta.env.BACKEND_URL}/job/getalljobs`, {
                     withCredentials: true,
                 });
                 console.log(data.jobs);

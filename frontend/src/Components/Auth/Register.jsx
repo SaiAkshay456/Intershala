@@ -17,7 +17,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(`${BACKEND_URL}/user/register`, {
+            const { data } = await axios.post(`${import.meta.env.BACKEND_URL}/user/register`, {
                 firstName, lastName, email, password, role
             }, {
                 withCredentials: true,

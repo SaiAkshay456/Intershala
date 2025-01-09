@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     const fetchuser = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/user/getuser`, { withCredentials: true })
+        const response = await axios.get(`${import.meta.env.BACKEND_URL}/user/getuser`, { withCredentials: true })
         setUser(response.data.user);
         setIsAuthorized(true);
       }

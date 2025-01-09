@@ -17,7 +17,7 @@ const Myjobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          `${BACKEND_URL}/job/getmyjobs`,
+          `${import.meta.env.BACKEND_URL}/job/getmyjobs`,
           { withCredentials: true }
         );
         setMyJobs(data.jobs);
@@ -39,7 +39,7 @@ const Myjobs = () => {
   const handleUpdate = async (jobId) => {
     const updateJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`${BACKEND_URL}/job/updatejob/${jobId}`, updateJob, {
+      .put(`${import.meta.env.BACKEND_URL}/job/updatejob/${jobId}`, updateJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -55,7 +55,7 @@ const Myjobs = () => {
 
   const handleDelete = async (jobId) => {
     await axios
-      .delete(`${BACKEND_URL}/job/deletejob/${jobId}`, {
+      .delete(`${import.meta.env.BACKEND_URL}/job/deletejob/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {
