@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import "../../style/postjob.css";
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 
 const PostJob = () => {
     const [title, setTitle] = useState("");
@@ -33,7 +34,7 @@ const PostJob = () => {
             setFixedSalary("");
         }
 
-        await axios.post(`${import.meta.env.BACKEND_URL}/job/postjob`, fixedSalary.length >= 4 ?
+        await axios.post(`http://localhost:3030/api/v1/job/postjob`, fixedSalary.length >= 4 ?
             { companyName, title, category, city, country, location, description, fixedSalary } :
             { companyName, title, category, city, country, location, description, salaryFrom, salaryTo }, {
             withCredentials: true,

@@ -3,6 +3,7 @@ import { Context } from '../../main';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "../../style/jobs.css"; // Assuming you have a separate CSS file for styling
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 
 const Jobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -17,7 +18,7 @@ const Jobs = () => {
 
         const fetchJobs = async () => {
             try {
-                const { data } = await axios.get(`${import.meta.env.BACKEND_URL}/job/getalljobs`, {
+                const { data } = await axios.get(`http://localhost:3030/api/v1/job/getalljobs`, {
                     withCredentials: true,
                 });
                 console.log(data.jobs);

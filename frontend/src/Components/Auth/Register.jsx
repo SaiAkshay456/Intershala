@@ -4,6 +4,7 @@ import { Context } from '../../main';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 
 
 const Register = () => {
@@ -17,7 +18,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(`${import.meta.env.BACKEND_URL}/user/register`, {
+            const { data } = await axios.post(`http://localhost:3030/api/v1/user/register`, {
                 firstName, lastName, email, password, role
             }, {
                 withCredentials: true,
@@ -35,7 +36,7 @@ const Register = () => {
             setIsAuthorized(true);
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            toast.error(error?.response?.data?.message);
         }
     }
     useEffect(() => {
@@ -43,7 +44,7 @@ const Register = () => {
             navigate("/");
         }
 
-    }, [isAuthorized, navigate]);
+    }, [isAuthorized]);
     return (
         <>
             <div className="wrapper">

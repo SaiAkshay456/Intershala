@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Context } from '../../main';
 import toast from 'react-hot-toast';
 import axios from 'axios'
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -13,7 +14,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(`${import.meta.env.BACKEND_URL}/user/login`, {
+            const { data } = await axios.post(`http://localhost:3030/api/v1/user/login`, {
                 email, password, role
             }, {
                 withCredentials: true,
@@ -36,7 +37,7 @@ const Login = () => {
         if (isAuthorized) {
             navigate("/");
         }
-    }, [isAuthorized, navigate]);
+    }, [isAuthorized]);
     return (
         <div className="wrapper">
             <h1 className="must">Login Here</h1>

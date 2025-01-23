@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap'; // For the modal
 import "../../style/applications.css";
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
+
 
 const MyApplications = () => {
     const { isAuthorized, user } = useContext(Context);
@@ -21,8 +23,8 @@ const MyApplications = () => {
         const fetchApplications = async () => {
             try {
                 const endpoint = user.role === "Employer" ?
-                    `${import.meta.env.BACKEND_URL}/application/empApplications` :
-                    `${import.meta.env.BACKEND_URL}/application/jobseekerApplications`;
+                    `http://localhost:3030/api/v1/application/empApplications` :
+                    `http://localhost:3030/api/v1/application/jobseekerApplications`;
                 const { data } = await axios.get(endpoint, { withCredentials: true });
                 setApplications(data.applications);
             } catch (err) {
@@ -35,7 +37,7 @@ const MyApplications = () => {
     // Delete application (for Jobseekers only)
     const deleteApplication = async (id) => {
         try {
-            const { data } = await axios.delete(`${import.meta.env.BACKEND_URL}/application/deleteApplication/${id}`, { withCredentials: true });
+            const { data } = await axios.delete(`http://localhost:3030/api/v1/application/deleteApplication/${id}`, { withCredentials: true });
             toast.success(data.message);
             setApplications((prevApp) => prevApp.filter((app) => app._id !== id));
         } catch (err) {

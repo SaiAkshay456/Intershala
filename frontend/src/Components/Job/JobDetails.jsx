@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { Context } from '../../main';
 import axios from 'axios';
 import '../../style/JobDetails.css'; // Custom CSS for responsive letter format
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 
 const JobDetails = () => {
     const { id } = useParams();
@@ -13,7 +14,7 @@ const JobDetails = () => {
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
-                const { data } = await axios.get(`${import.meta.env.BACKEND_URL}/job/${id}`, { withCredentials: true });
+                const { data } = await axios.get(`http://localhost:3030/api/v1/job/${id}`, { withCredentials: true });
                 setJob(data.job);
             } catch (error) {
                 console.error('Error fetching job details:', error);

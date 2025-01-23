@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 // Make sure to import the CSS if not using CDN in your HTML file
 
 const Application = () => {
@@ -31,7 +32,7 @@ const Application = () => {
         formdata.append("resume", resume);
         formdata.append("jobId", id);
         try {
-            const { data } = await axios.post(`${import.meta.env.BACKEND_URL}/application/post`, formdata, {
+            const { data } = await axios.post(`http://localhost:3030/api/v1/application/post`, formdata, {
                 withCredentials: true,
                 headers: {
                     "Content-Type": "multipart/form-data"

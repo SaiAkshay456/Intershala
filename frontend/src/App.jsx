@@ -24,13 +24,14 @@ import NavBar from './Components/Layout/Navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Contact from './Components/Layout/Contact';
 
+const BASE_URL_BACKEND1 = "https://carrermatebackend.onrender.com";
 function App() {
-  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
+  const { isAuthorized, setIsAuthorized, setUser, user } = useContext(Context);
 
   useEffect(() => {
     const fetchuser = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.BACKEND_URL}/user/getuser`, { withCredentials: true })
+        const response = await axios.get(`http://localhost:3030/api/v1/user/getuser`, { withCredentials: true })
         setUser(response.data.user);
         setIsAuthorized(true);
       }

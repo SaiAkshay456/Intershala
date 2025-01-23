@@ -7,6 +7,8 @@ import { RxCross2 } from "react-icons/rx";
 import "../../style/myjobs.css"; // Custom CSS for animations
 import toast from "react-hot-toast";
 
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
+
 const Myjobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   const [editMode, setEditMode] = useState(null);
@@ -17,7 +19,7 @@ const Myjobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.BACKEND_URL}/job/getmyjobs`,
+          `http://localhost:3030/api/v1/job/getmyjobs`,
           { withCredentials: true }
         );
         setMyJobs(data.jobs);
@@ -39,7 +41,7 @@ const Myjobs = () => {
   const handleUpdate = async (jobId) => {
     const updateJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`${import.meta.env.BACKEND_URL}/job/updatejob/${jobId}`, updateJob, {
+      .put(`http://localhost:3030/api/v1/job/updatejob/${jobId}`, updateJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -55,7 +57,7 @@ const Myjobs = () => {
 
   const handleDelete = async (jobId) => {
     await axios
-      .delete(`${import.meta.env.BACKEND_URL}/job/deletejob/${jobId}`, {
+      .delete(`http://localhost:3030/api/v1/job/deletejob/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {

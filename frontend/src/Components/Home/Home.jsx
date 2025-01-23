@@ -15,7 +15,7 @@ const Home = () => {
     if (!isAuthorized) {
       navigate("/register");
     }
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized]);
 
   return (
     <section className="homePage page">

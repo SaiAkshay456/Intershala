@@ -4,14 +4,14 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Context } from '../../main';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import axios from "axios";
-
+import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 const NavBar = () => {
 
     const { isAuthorized, setIsAuthorized, user } = useContext(Context);
     const navigateTo = useNavigate();
     const handleLogout = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.BACKEND_URL}/user/logout`, { withCredentials: true })
+            const response = await axios.get(`http://localhost:3030/api/v1/user/logout`, { withCredentials: true })
             toast.success(response.data.message)
             console.log("logged out");
             setIsAuthorized(false);
