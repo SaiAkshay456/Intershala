@@ -40,7 +40,7 @@ const HeroSection = () => {
                             <h1>Your career starts here.</h1>
                             <h1>Apply with ease, land with confidence</h1>
                             <p>
-                                Welcome to Internshala, your go-to platform for finding the job that
+                                Welcome to Career Mate, your go-to platform for finding the job that
                                 perfectly aligns with your skills, passions, and career goals. Whether
                                 you're just starting out or looking for the next big step in your professional journey,
                                 we connect you with opportunities from top employers across industries. With an easy-to-use interface and

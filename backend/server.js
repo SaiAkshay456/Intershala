@@ -1,13 +1,16 @@
 import app from "./app.js";
-import cloudinary from "cloudinary";
-
-cloudinary.v2.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_API_KEY,
-    api_secret: process.env.CLOUD_SECRET_KEY
-})
+import { v2 as cloudinary } from 'cloudinary';
+const PORT = process.env.PORT || 8080
 
 
-app.listen(process.env.PORT, '0.0.0.0', () => {
-    console.log(`server running at port ${process.env.PORT}`);
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+
+export default cloudinary
+app.listen(PORT, () => {
+    console.log(`server running at port http://localhost:${PORT}`);
 })

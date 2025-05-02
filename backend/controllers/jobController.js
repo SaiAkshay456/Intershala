@@ -2,6 +2,41 @@ import { catchAsyncError } from "../middleware/catchAsyncError.js";
 import { Errorhandler } from "../middleware/error.js";
 import jobModel from "../models/jobSchema.js";
 
+// Search Jobs API
+export const searchJobs = catchAsyncError(async (req, res, next) => {
+    const { role } = req.user;
+    if (role === "Employer") {
+        return next(new Errorhandler(`${role} can,t access this resource`));
+    }
+    const { query } = req.query || "";
+    if (!query) {
+        return next(new Errorhandler("No value Found", 209));
+    }
+    const jobs = await jobModel.find({
+        $or: [
+            { title: { $regex: query, $options: "i" } },
+            { companyName: { $regex: query, $options: "i" } },
+            { location: { $regex: query, $options: "i" } },
+            { description: { $regex: query, $options: "i" } },
+            { category: { $regex: query, $options: "i" } },
+        ]
+    })
+        .select('title companyName location description category createdAt') // Select only the necessary fields
+        .sort({ createdAt: -1 })  // Sorting by created date
+        .limit(20);  // Optional: Limit the number of results returned for better performance
+
+
+    if (!jobs) {
+        return next(new Errorhandler("No Jobs found with keyword", 208));
+    }
+    res.status(200).json({
+        success: true,
+        jobs
+    });
+
+
+});
+
 
 export const getAllJobs = catchAsyncError(async (req, res, next) => {
     const jobs = await jobModel.find({ expired: false })

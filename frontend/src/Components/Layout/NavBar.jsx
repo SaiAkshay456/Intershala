@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast';
 import { useNavigate, Link } from 'react-router-dom';
 import { Context } from '../../main';
@@ -6,7 +6,6 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import axios from "axios";
 import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 const NavBar = () => {
-
     const { isAuthorized, setIsAuthorized, user } = useContext(Context);
     const navigateTo = useNavigate();
     const handleLogout = async () => {
@@ -18,9 +17,12 @@ const NavBar = () => {
             navigateTo("/login");
         }
         catch (error) {
-            toast.error(error.response.data.message)
+            if (error.response) {
+                toast.error(error.response.data.message);
+            } else {
+                toast.error("error occured.");
+            }
             console.log(error);
-            setIsAuthorized(true);
         }
     }
     const renderUserFields = () => {
@@ -49,7 +51,7 @@ const NavBar = () => {
         <>
             {isAuthorized ? (<Navbar expand="lg" style={{ background: '#009688' }} >
                 <Container>
-                    <Navbar.Brand as={Link} to="/" className="text-white">Internshala</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/" className="text-white">Career Mate</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mx-auto">

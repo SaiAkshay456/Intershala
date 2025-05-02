@@ -12,10 +12,12 @@ const Application = () => {
     const [coverLetter, setCoverLetter] = useState("");
     const [resume, setResume] = useState(null);
     const [address, setAddress] = useState("");
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     const handleResume = (e) => {
         const resume = e.target.files[0];
+        console.log(resume);
         setResume(resume);
     }
 
@@ -31,6 +33,9 @@ const Application = () => {
         formdata.append("coverLetter", coverLetter);
         formdata.append("resume", resume);
         formdata.append("jobId", id);
+
+        console.log(id);
+
         try {
             const { data } = await axios.post(`http://localhost:3030/api/v1/application/post`, formdata, {
                 withCredentials: true,
@@ -38,20 +43,32 @@ const Application = () => {
                     "Content-Type": "multipart/form-data"
                 }
             });
+            console.log("Application posted successfully:", data);
+            console.log(data.application);
+            if (data.finalScore < 70) {
+                toast.error(`Resume rejected due to low match. Try improving your resume.`);
+                navigate("/job/getalljobs");
+                return;
+            } else {
+                toast.success(`✅ - Great match! High chance of getting shortlisted.`);
+                toast.success(data.message);
+            }
             setName("");
             setEmail("");
             setPhone("");
             setAddress("");
             setResume(null);
             setCoverLetter("");
-            toast.success(data.message);
             navigate("/job/getalljobs");
+            setLoading(false);
 
         } catch (err) {
-            console.log(err.response.data.message);
-            toast.error(err.response.data.message);
+            // console.log(err);
+            setLoading(false);
+            console.error("Error posting application:", err.response?.data || err.message);
         }
     };
+
 
     return (
         <div className="application py-5">
@@ -107,7 +124,7 @@ const Application = () => {
                                     placeholder='Cover letter'
                                     rows="4"
                                     onChange={(e) => setCoverLetter(e.target.value)}
-                                    required
+                                // required
                                 />
                             </div>
                             <div className="form-group mb-3">
@@ -116,7 +133,7 @@ const Application = () => {
                                     className="form-control"
                                     onChange={handleResume}
                                     placeholder='Resume'
-                                    accept=".jpg, .webp, .png"
+                                    accept="application/pdf"
                                     style={{ width: "100%" }}
                                     required
                                 />

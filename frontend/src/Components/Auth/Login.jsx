@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom';
 import { Context } from '../../main';
 import toast from 'react-hot-toast';
 import axios from 'axios'
@@ -51,7 +51,7 @@ const Login = () => {
                 </select>
                 <button className="btx" onClick={handleLogin}>Login Now</button>
                 <div className="member">
-                    Not a member? <a href="./register">Register Now</a>
+                    Not a member? <Link to="/register">Register Now</Link>
                 </div>
 
             </form>

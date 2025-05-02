@@ -4,12 +4,13 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "../../style/jobs.css"; // Assuming you have a separate CSS file for styling
 import { BASE_URL_BACKEND } from "../Services/helper.jsx";
+import { ClipLoader } from 'react-spinners';
 
 const Jobs = () => {
     const [jobs, setJobs] = useState([]);
     const { isAuthorized } = useContext(Context);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-
     useEffect(() => {
         if (!isAuthorized) {
             navigate("/login");
@@ -26,12 +27,17 @@ const Jobs = () => {
             } catch (error) {
                 console.error("Error fetching jobs:", error);
             }
+            finally {
+                setLoading(false);
+            }
         };
 
         fetchJobs();
     }, [isAuthorized, navigate]);
 
-    return (
+    return (loading ? (<div className="text-center">
+        <ClipLoader size={50} color={"#000"} loading={loading} />
+    </div>) :
         <div className="jobs">
             <div className="container">
                 <h3>All Available Jobs</h3>

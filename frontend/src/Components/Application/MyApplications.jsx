@@ -2,17 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../../main';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import { Modal, Button } from 'react-bootstrap'; // For the modal
+import { Button } from 'react-bootstrap'; // For the modal
 import "../../style/applications.css";
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL_BACKEND } from "../Services/helper.jsx";
+import { ClipLoader } from 'react-spinners';
 
 
 const MyApplications = () => {
     const { isAuthorized, user } = useContext(Context);
     const [applications, setApplications] = useState([]);
-    const [showModal, setShowModal] = useState(false);
     const [selectedResume, setSelectedResume] = useState(null);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     // Fetching applications based on user role
@@ -30,6 +31,9 @@ const MyApplications = () => {
             } catch (err) {
                 toast.error(err.response.data.message);
             }
+            finally {
+                setLoading(false);
+            }
         };
         fetchApplications()
     }, [user.role]);
@@ -45,77 +49,48 @@ const MyApplications = () => {
         }
     };
 
-    // Open Modal to view resume
-    const handleResumeView = (resume) => {
-        setSelectedResume(resume);
-        setShowModal(true);
-    };
-
-    // Close modal
-    const handleClose = () => setShowModal(false);
-
+    // Open Modal to view resum
     return (
-        <div className="container my-4">
-            <h2 className="text-center">My Applications</h2>
-            <div className="row">
-                {applications.length > 0 ? (
-                    applications.map((app) => (
-                        <div className="col-md-6 mb-3" key={app._id}>
-                            <div className="card shadow-sm">
-                                <div className="card-body">
-                                    <p><strong>Name:</strong> {app.name}</p>
-                                    <p><strong>Email:</strong> {app.email}</p>
-                                    <p><strong>Phone:</strong> {app.phone}</p>
-                                    <p><strong>Address:</strong> {app.address}</p>
-                                    <p><strong>Cover Letter:</strong> {app.coverLetter}</p>
-                                    <Button variant="info" onClick={() => handleResumeView(app.resume.url)}>
-                                        View Resume
-                                    </Button>
-                                    {user.role !== "Employer" && (
-                                        <Button variant="danger" onClick={() => deleteApplication(app._id)}>
-                                            Delete Application
-                                        </Button>
-                                    )}
+        loading ? (
+            <div className="text-center">
+                <ClipLoader size={50} color={"#000"} loading={loading} />
+            </div>
+        ) : (
+            <div className="container my-4">
+                <h2 className="text-center">My Applications</h2>
+                <div className="row">
+                    {applications.length > 0 ? (
+                        applications.map((app) => (
+                            <div className="col-md-6 mb-3" key={app._id}>
+                                <div className="card shadow-sm">
+                                    <div className="card-body">
+                                        <p><strong>Name:</strong> {app.name}</p>
+                                        <p><strong>Email:</strong> {app.email}</p>
+                                        <p><strong>Phone:</strong> {app.phone}</p>
+                                        <p><strong>Address:</strong> {app.address}</p>
+                                        <p><strong>Cover Letter:</strong> {app.coverLetter}</p>
+                                        <a href={app.resume.url} target="_blank" className="btn btn-primary w-100 text-center" role="button">
+                                            Resume
+                                        </a>
+                                        <h6>{app.jobId}</h6>
+                                        {user.role !== "Employer" && (
+                                            <Button variant="danger" onClick={() => deleteApplication(app._id)}>
+                                                Delete Application
+                                            </Button>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
-                ) : (
-                    <p>No applications yet</p>
-                )}
-            </div>
-
-            {/* Modal to View Resume */}
-            <Modal show={showModal} onHide={handleClose} size="lg" centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Resume</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {selectedResume ? (
-                        <div className="resume-container">
-                            <iframe
-                                src={selectedResume}
-                                className="responsive-iframe"
-                                title="Resume"
-                            />
-                        </div>
+                        ))
                     ) : (
-                        <p>No resume available.</p>
+                        <p>No applications yet</p>
                     )}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+                </div>
+            </div>
+        )
     );
-
-
-
-
 
 };
 
 export default MyApplications;
+

@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../main";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import "../../style/myjobs.css"; // Custom CSS for animations
 import toast from "react-hot-toast";
-
+import { ClipLoader } from 'react-spinners';
 import { BASE_URL_BACKEND } from "../Services/helper.jsx";
 
 const Myjobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   const [editMode, setEditMode] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { isAuthorized, user } = useContext(Context);
   const navigate = useNavigate();
 
@@ -26,6 +27,9 @@ const Myjobs = () => {
       } catch (err) {
         console.log(err.response.data.message);
       }
+      finally {
+        setLoading(false);
+      }
     };
     fetchJobs();
   }, []);
@@ -39,6 +43,7 @@ const Myjobs = () => {
   };
 
   const handleUpdate = async (jobId) => {
+    setLoading(true);
     const updateJob = myJobs.find((job) => job._id === jobId);
     await axios
       .put(`http://localhost:3030/api/v1/job/updatejob/${jobId}`, updateJob, {
@@ -47,11 +52,13 @@ const Myjobs = () => {
       .then((res) => {
         console.log(res.data.message);
         toast.success(res.data.message)
+        setLoading(false);
         setEditMode(null);
       })
       .catch((err) => {
         toast.error(err.response.data.message)
         console.error(err.response.data.message);
+        setLoading(false);
       });
   };
 
@@ -78,8 +85,12 @@ const Myjobs = () => {
     );
   };
 
-  return (
-    <div className="myjob-page container py-4">
+  return (loading ? (
+    <div className="text-center">
+      <ClipLoader size={50} color={"#000"} loading={loading} />
+    </div>
+  ) :
+    (<div className="myjob-page container py-4">
       <h3 className="mb-4 animate__animated animate__fadeIn text-center">Jobs Posted</h3>
       {myJobs && myJobs.length > 0 ? (
         <div className="row g-4">
@@ -242,7 +253,7 @@ const Myjobs = () => {
                   </div>
                 </div>
 
-                <div className="card-footer d-flex justify-content-between">
+                <div className="card-footer d-flex text-center justify-content-between">
                   {editMode === job._id ? (
                     <>
                       <button
@@ -267,6 +278,11 @@ const Myjobs = () => {
                     Remove
                   </button>
                 </div>
+                <div className="text-center">
+                  <Link to={`/interview/${job._id}`} className="btn btn-primary">
+                    Set Interview
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -274,7 +290,7 @@ const Myjobs = () => {
       ) : (
         <p>You haven't posted any jobs.</p>
       )}
-    </div>
+    </div>)
   );
 };
 

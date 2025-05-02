@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useContext, useEffect } from 'react'
 import { Context } from '../../main';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { BASE_URL_BACKEND } from "../Services/helper.jsx";
@@ -61,7 +61,7 @@ const Register = () => {
                     </select>
                     <button onClick={handleRegister} className="btx">Sign Up</button>
                     <div className="member">
-                        Already a member? <a href="./login">Login Here</a>
+                        Already a member? <Link to="/login">Login Here</Link>
                     </div>
                 </form>
             </div >

@@ -13,7 +13,7 @@ import Jobs from './Components/Job/Jobs';
 import PostJob from './Components/Job/PostJob';
 import Application from './Components/Application/Application';
 import MyApplications from './Components/Application/MyApplications';
-import ResumeModal from './Components/Application/ResumeModal';
+// import ResumeModal from './Components/Application/ResumeModal';
 import Footer from "./Components/Layout/Footer"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "react-hot-toast";
@@ -23,6 +23,8 @@ import NotFound from './Components/NotFound/NotFound';
 import NavBar from './Components/Layout/Navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Contact from './Components/Layout/Contact';
+import JobSearch from './Components/Search/JobSearch';
+import InterviewPage from './Components/Interview/InterviewPage';
 
 const BASE_URL_BACKEND1 = "https://carrermatebackend.onrender.com";
 function App() {
@@ -49,6 +51,8 @@ function App() {
         <Router>
           <NavBar />
           <Routes>
+            <Route path="/search" element={<JobSearch />} />
+            <Route path="/interview/:id" element={<InterviewPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<Home />} />
