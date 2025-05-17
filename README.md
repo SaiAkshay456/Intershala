@@ -1,3 +1,6 @@
+Welcome, fellow builder! 🛠️ 
+
+
 AI-Powered Recruitment Platform
 Built Different. Hires Smarter.
 One platform to rule job seekers, recruiters, and AI-driven hiring — because basic job boards are old news.
