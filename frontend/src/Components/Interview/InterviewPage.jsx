@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import InterviewForm from './InterviewForm.jsx';
 import QuestionList from './QuestionList.jsx';
 import { useParams } from 'react-router-dom';
+import InterviewLink from './InterviewLink.jsx';
+import toast from 'react-hot-toast';
 
 const InterviewPage = () => {
     const [step, setStep] = useState(1);
-
-
     const [formData, setFormData] = useState({
         email: '',
         duration: '',
         interviewType: []
     });
-
+    const [interviewId, setInterviewId] = useState("")
+    const handleInterviewId = (interviewId) => {
+        setInterviewId(interviewId)
+    }
     return (
         <div className="flex flex-col items-center pt-8"> {/* Added top padding */}
             {/* Progress Bar Container with margins */}
@@ -32,8 +35,11 @@ const InterviewPage = () => {
             </div>
 
             {
-                step === 1 ? <InterviewForm goToNext={() => setStep(step + 1)} formData={formData}
-                    setFormData={setFormData} /> : step === 2 ? <QuestionList goBack={(() => setStep(step - 1))} formData={formData} /> : null
+                step === 1 ? <InterviewForm goToNext={() => setStep(prev => prev + 1)} formData={formData}
+                    setFormData={setFormData} /> : step === 2 ?
+                    <QuestionList onCreateLink={(interviewId) => handleInterviewId(interviewId)}
+                        goBack={(() => setStep(step - 1))} goToNext={() => setStep(prev => prev + 1)}
+                        formData={formData} /> : step === 3 ? <InterviewLink interviewId={interviewId} formData={formData} /> : null
             }
         </div >
     );

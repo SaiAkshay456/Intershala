@@ -10,18 +10,13 @@ const NavBar = () => {
     const navigateTo = useNavigate();
     const handleLogout = async () => {
         try {
-            const response = await axios.get(`http://localhost:3030/api/v1/user/logout`, { withCredentials: true })
+            const response = await axios.get(`https://careermate-app.onrender.com/api/v1/user/logout`, { withCredentials: true })
             toast.success(response.data.message)
             console.log("logged out");
             setIsAuthorized(false);
             navigateTo("/login");
         }
         catch (error) {
-            if (error.response) {
-                toast.error(error.response.data.message);
-            } else {
-                toast.error("error occured.");
-            }
             console.log(error);
         }
     }
@@ -32,6 +27,7 @@ const NavBar = () => {
                     <Nav.Link as={Link} to="/application/me" className="text-white">Applicant's Appliccation</Nav.Link>
                     <Nav.Link as={Link} to="/job/postjob" className="text-white">Post Job</Nav.Link>
                     <Nav.Link as={Link} to="/job/getmyjobs" style={{ color: 'white' }}>View Your Jobs</Nav.Link>
+                    <Nav.Link as={Link} to="/all/interviews" style={{ color: 'white' }}>Interviews</Nav.Link>
 
                 </>
             );

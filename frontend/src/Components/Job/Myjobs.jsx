@@ -20,7 +20,7 @@ const Myjobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3030/api/v1/job/getmyjobs`,
+          `https://careermate-app.onrender.com/api/v1/job/getmyjobs`,
           { withCredentials: true }
         );
         setMyJobs(data.jobs);
@@ -46,7 +46,7 @@ const Myjobs = () => {
     setLoading(true);
     const updateJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`http://localhost:3030/api/v1/job/updatejob/${jobId}`, updateJob, {
+      .put(`https://careermate-app.onrender.com/api/v1/job/updatejob/${jobId}`, updateJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -63,18 +63,16 @@ const Myjobs = () => {
   };
 
   const handleDelete = async (jobId) => {
-    await axios
-      .delete(`http://localhost:3030/api/v1/job/deletejob/${jobId}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        toast.success(res.data.message)
-        setMyJobs((prev) => prev.filter((job) => job._id !== jobId));
-      })
-      .catch((err) => {
-        toast.success(res.data.response.message)
-        console.error(err.response.data.message)
-      });
+    try {
+      const { data } = await axios
+        .delete(`https://careermate-app.onrender.com/api/v1/job/deletejob/${jobId}`, {
+          withCredentials: true,
+        })
+      toast.success(data.message)
+      setMyJobs((prev) => prev.filter((job) => job._id !== jobId));
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
   };
 
   const handleInputChange = (jobId, field, value) => {
@@ -279,7 +277,7 @@ const Myjobs = () => {
                   </button>
                 </div>
                 <div className="text-center">
-                  <Link to={`/interview/${job._id}`} className="btn btn-primary">
+                  <Link to={`/candidate-interview/${job._id}`} className="btn btn-primary">
                     Set Interview
                   </Link>
                 </div>

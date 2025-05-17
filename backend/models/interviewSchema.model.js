@@ -18,8 +18,8 @@ const interviewSchema = new mongoose.Schema({
         type: String,
     },
     interviewType: {
-        type: String,
-        rquired: true,
+        type: [String], // Array of numbers
+        required: true  // Default empty array
     },
     duration: {
         type: String,
@@ -34,5 +34,5 @@ const interviewSchema = new mongoose.Schema({
 }, { timestamps: true }
 )
 
-const interviewModel = mongoose.model("interviewModel", jobSchema);
+const interviewModel = mongoose.model("interviewModel", interviewSchema);
 export default interviewModel;

@@ -29,7 +29,7 @@ const JobSearch = () => {
                 if (searchTermOfURL) {
                     const searchQuery = urlParams.toString();
                     setQueryTerm(searchQuery);
-                    const { data } = await axios.get(`http://localhost:3030/api/v1/job/search?${searchQuery}`, {
+                    const { data } = await axios.get(`https://careermate-app.onrender.com/api/v1/job/search?${searchQuery}`, {
                         withCredentials: true,
                     });
                     setJobs(data.jobs);

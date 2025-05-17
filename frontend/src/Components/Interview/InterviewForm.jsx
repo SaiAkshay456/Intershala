@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Container, Form, Button, ButtonGroup, Card } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
+import { Context } from '../../main.jsx';
 function InterviewForm({ goToNext, formData, setFormData }) {
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
+    const { user } = useContext(Context)
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -19,6 +21,11 @@ function InterviewForm({ goToNext, formData, setFormData }) {
         formData["jobId"] = id;
         if (formData.interviewType.length === 0) {
             toast.error("select interview type");
+            return;
+        }
+        if (formData.email !== user.email) {
+            alert("Registered Email Did,nt Matched")
+            toast.error("Try with registered email")
             return;
         }
         goToNext();
@@ -39,7 +46,7 @@ function InterviewForm({ goToNext, formData, setFormData }) {
                                 name="email"  // Changed from "name" to "email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Enter your email"
+                                placeholder="Enter your Registered email"
                                 className="py-2"
                                 required
                             />
@@ -71,7 +78,7 @@ function InterviewForm({ goToNext, formData, setFormData }) {
                         <Form.Group className="mb-4">
                             <Form.Label className="fw-medium d-block mb-3">Select Interview Type</Form.Label>
                             <div className="d-flex flex-wrap">  {/* Replaced ButtonGroup with div for better control */}
-                                {['Technical', 'Behavioral', 'Experience', 'Problem Solving'].map((pref) => (
+                                {['Technical', 'Behavioral', 'Experience', 'Problem Solving', 'System Design'].map((pref) => (
                                     <Button
                                         key={pref}
                                         variant={formData.interviewType.includes(pref) ? "primary" : "outline-primary"}

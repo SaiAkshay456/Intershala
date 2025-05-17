@@ -14,7 +14,6 @@ const Application = () => {
     const [address, setAddress] = useState("");
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-
     const handleResume = (e) => {
         const resume = e.target.files[0];
         console.log(resume);
@@ -37,7 +36,7 @@ const Application = () => {
         console.log(id);
 
         try {
-            const { data } = await axios.post(`http://localhost:3030/api/v1/application/post`, formdata, {
+            const { data } = await axios.post(`https://careermate-app.onrender.com/api/v1/application/post`, formdata, {
                 withCredentials: true,
                 headers: {
                     "Content-Type": "multipart/form-data"

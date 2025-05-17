@@ -150,6 +150,14 @@ export const postApplication = catchAsyncError(async (req, res, next) => {
         type: "upload"
     });
 
+    fs.unlink(file.path, (err) => {
+        if (err) {
+            console.error("Error deleting local file:", err);
+        } else {
+            console.log("Local file deleted:", file.path);
+        }
+    });
+
     const resumeText = await extractTextFromPdf(result.secure_url);
 
     let jobDescription = job.description;

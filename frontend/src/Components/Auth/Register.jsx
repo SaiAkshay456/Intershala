@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useContext, useEffect } from 'react'
-import { Context } from '../../main';
+import { Context } from '../../main.jsx';
 import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
@@ -18,7 +18,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(`http://localhost:3030/api/v1/user/register`, {
+            const { data } = await axios.post(`https://careermate-app.onrender.com/api/v1/user/register`, {
                 firstName, lastName, email, password, role
             }, {
                 withCredentials: true,
@@ -34,6 +34,8 @@ const Register = () => {
             setPassword("");
             setRole("");
             setIsAuthorized(true);
+            setUser(data.user);
+            console.log(data.user);
         } catch (error) {
             console.log(error);
             toast.error(error?.response?.data?.message);

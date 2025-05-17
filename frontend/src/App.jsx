@@ -25,6 +25,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Contact from './Components/Layout/Contact';
 import JobSearch from './Components/Search/JobSearch';
 import InterviewPage from './Components/Interview/InterviewPage';
+import CandidateInterview from './Components/Interview/CandidateInterview';
+import JoinInterview from './Components/Interview/JoinInterview';
+import StartInterview from './Components/Interview/StartInterview';
+import ThankYou from './Components/Interview/ThankYou';
+import InterviewFeedback from './Components/Interview/InterviewFeedback';
+import Interviews from './Components/Interview/Interviews';
+import ViewReport from './Components/Interview/ViewReport';
 
 const BASE_URL_BACKEND1 = "https://carrermatebackend.onrender.com";
 function App() {
@@ -33,7 +40,7 @@ function App() {
   useEffect(() => {
     const fetchuser = async () => {
       try {
-        const response = await axios.get(`http://localhost:3030/api/v1/user/getuser`, { withCredentials: true })
+        const response = await axios.get(`https://careermate-app.onrender.com/api/v1/user/getuser`, { withCredentials: true })
         setUser(response.data.user);
         setIsAuthorized(true);
       }
@@ -52,7 +59,13 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/search" element={<JobSearch />} />
-            <Route path="/interview/:id" element={<InterviewPage />} />
+            <Route path="/join-interview/:id" element={<JoinInterview />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/interview-feedback/report/:id" element={<ViewReport />} />
+            <Route path="/all/interviews" element={<Interviews />} />
+            <Route path="/interview-feedback/:id" element={<InterviewFeedback />} />
+            <Route path="/join-interview/start/:id" element={<StartInterview />} />
+            <Route path="/candidate-interview/:id" element={<InterviewPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<Home />} />

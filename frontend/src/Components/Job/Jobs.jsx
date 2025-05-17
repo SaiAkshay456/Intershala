@@ -19,7 +19,7 @@ const Jobs = () => {
 
         const fetchJobs = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:3030/api/v1/job/getalljobs`, {
+                const { data } = await axios.get(`https://careermate-app.onrender.com/api/v1/job/getalljobs`, {
                     withCredentials: true,
                 });
                 console.log(data.jobs);
